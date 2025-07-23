@@ -1,6 +1,7 @@
 """
 Database models
 """
+
 import uuid
 import os
 from django.conf import settings
@@ -15,9 +16,9 @@ from django.contrib.auth.models import (
 def book_image_file_path(instance, filename):
     """Generate file path for new book image."""
     ext = os.path.splitext(filename)[1]
-    filename = f'{uuid.uuid4()}{ext}'
+    filename = f"{uuid.uuid4()}{ext}"
 
-    return os.path.join('uploads', 'book', filename)
+    return os.path.join("uploads", "book", filename)
 
 
 class UserManager(BaseUserManager):

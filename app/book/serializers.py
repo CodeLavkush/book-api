@@ -12,7 +12,15 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ["id", "title", "author", "release_date", "genre", "description", "image"]
+        fields = [
+            "id",
+            "title",
+            "author",
+            "release_date",
+            "genre",
+            "description",
+            "image",
+        ]
         read_only_fields = ["id"]
 
 
@@ -21,10 +29,10 @@ class BookImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'image']
-        read_only_fields = ['id']
+        fields = ["id", "image"]
+        read_only_fields = ["id"]
         extra_kwargs = {
-            'image': {
-                'required': 'True',
+            "image": {
+                "required": "True",
             }
         }
