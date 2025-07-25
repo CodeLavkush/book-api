@@ -4,6 +4,7 @@ services:
       context: .
       args:
         - DEV=true
+    image: book-api:v1
     ports:
       - "8000:8000"
     volumes:
@@ -15,9 +16,10 @@ services:
               python manage.py runserver 0.0.0.0:8000"
     environment:
       - DB_HOST=db
-      - DB_NAME=Devb
+      - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASS=changeme
+      - DEBUG=1
     depends_on:
       - db
 
@@ -26,7 +28,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=Devb
+      - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
 
