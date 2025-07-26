@@ -27,8 +27,17 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "changeme")
 DEBUG = bool(int(os.environ.get("DEBUG", 0)))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,9 +53,11 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "user",
     "book",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middlware.CoresMiddleware"
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
